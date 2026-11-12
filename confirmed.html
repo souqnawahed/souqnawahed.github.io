@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Email confirmed – Souqna Wahed</title>
+<style>
+  body{margin:0;background:#F6F1F3;font-family:-apple-system,'Segoe UI',Roboto,Tahoma,Arial,sans-serif;color:#1F1A1C}
+  .card{max-width:440px;margin:32px auto;background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.06)}
+  .head{background:#7A1033;color:#fff;text-align:center;padding:26px 20px}
+  .head img{width:68px;height:68px;border-radius:16px}
+  .head div{font-size:20px;font-weight:800;margin-top:10px}
+  .body{padding:24px 24px 8px;text-align:center}
+  .icon{font-size:54px;line-height:1}
+  h1{font-size:21px;margin:12px 0 6px}
+  p{font-size:15px;line-height:1.6;color:#4A4246;margin:6px 0}
+  .ar{direction:rtl}
+  .btn{display:block;margin:14px 0 0;padding:14px;border-radius:12px;text-decoration:none;font-weight:700;font-size:16px}
+  .main{background:#7A1033;color:#fff}
+  .alt{background:#F3E8EC;color:#7A1033}
+  .foot{padding:16px 24px 22px;text-align:center;font-size:12.5px;color:#9A8F94}
+  .err{display:none}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="head"><img src="/icon.png" alt=""><div>Souqna Wahed · سوقنا واحد</div></div>
+  <div class="body">
+    <div id="ok">
+      <div class="icon">✅</div>
+      <h1>Your email is confirmed</h1>
+      <p>Your account is active. Open the app and sign in with your email and password.</p>
+      <h1 class="ar">تم تأكيد بريدك الإلكتروني</h1>
+      <p class="ar">حسابك مفعّل الآن. افتح التطبيق وسجّل الدخول ببريدك وكلمة المرور.</p>
+    </div>
+    <div id="bad" class="err">
+      <div class="icon">⚠️</div>
+      <h1>This link has expired or was already used</h1>
+      <p>Open the app, sign in, and if needed tap “Send the link again”.</p>
+      <h1 class="ar">انتهت صلاحية الرابط أو تم استخدامه</h1>
+      <p class="ar">افتح التطبيق وسجّل الدخول، وإذا لزم اضغط «إرسال الرابط مرة أخرى».</p>
+    </div>
+    <a class="btn main" href="souqnawahed://login">Open the app · افتح التطبيق</a>
+    <a class="btn alt" href="/app/login">Use the web version · النسخة الإلكترونية</a>
+  </div>
+  <div class="foot">On iPhone, use the web version and tap Share → Add to Home Screen.<br><span class="ar">على الآيفون استخدم النسخة الإلكترونية ثم مشاركة ← إضافة إلى الشاشة الرئيسية.</span></div>
+</div>
+<script>
+  // Supabase adds "#error=…" when the link is expired or used; otherwise it worked.
+  var h = new URLSearchParams(location.hash.replace(/^#/, "")), q = new URLSearchParams(location.search);
+  if (h.get("error") || q.get("error")) { document.getElementById("ok").style.display = "none"; document.getElementById("bad").style.display = "block"; }
+  // don't keep the sign-in details in the address bar
+  if (location.hash) history.replaceState(null, "", location.pathname);
+</script>
+</body>
+</html>
